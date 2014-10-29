@@ -1,0 +1,35 @@
+{
+  "name": "jasmine-study",
+  "version": "1.0.0",
+  "description": "Jasmine testing framework study",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/flyingkrai/jasmine-study.git"
+  },
+  "keywords": [
+    "jasmine",
+    "amd",
+    "testing"
+  ],
+  "author": "Davi Alves <hey@davialves.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/flyingkrai/jasmine-study/issues"
+  },
+  "homepage": "https://github.com/flyingkrai/jasmine-study",
+  "devDependencies": {
+    "connect-livereload": "^0.5.0",
+    "express": "^4.10.1",
+    "gulp": "^3.8.9",
+    "gulp-connect": "^2.0.6",
+    "gulp-uglify": "^1.0.1",
+    "tiny-lr": "^0.1.4"
+  }
+}
