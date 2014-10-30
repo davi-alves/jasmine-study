@@ -1,5 +1,5 @@
 /*global define, describe, it, expect, beforeEach*/
-define(['numbers'], function (numbers) {
+define(['numbers', 'events'], function (numbers, events) {
   'use strict';
 
   describe('The numbers module', function () {
@@ -17,7 +17,7 @@ define(['numbers'], function (numbers) {
         'should accept one or more numerial arguments and return the sum of them',
         function () {
           // act
-          output = numbers.sum(this.numberInput1, this.numberInput2);
+          output = numbers.add(this.numberInput1, this.numberInput2);
 
           // assert
           expect(output).toEqual(3);
@@ -25,7 +25,7 @@ define(['numbers'], function (numbers) {
 
       it('should should try to parse strings', function () {
         // act
-        output = numbers.sum(this.numberInput1, this.stringInput1);
+        output = numbers.add(this.numberInput1, this.stringInput1);
 
         // assert
         expect(output).toEqual(3);
@@ -33,11 +33,25 @@ define(['numbers'], function (numbers) {
 
       it('should ignore not parsable values', function () {
         // act
-        output = numbers.sum(this.numberInput1, this.stringInput2);
+        output = numbers.add(this.numberInput1, this.stringInput2);
 
         // assert
         expect(output).toEqual(1);
       });
+
+      it(
+        'it should publish an added event showing the operands passed to the method and the result',
+        function () {
+          spyOn(events, 'publish');
+
+          numbers.add(this.numberInput1, this.numberInput2);
+
+          expect(events.publish).toHaveBeenCalled();
+          expect(events.publish).toHaveBeenCalledWith('added', {
+            operands: [this.numberInput1, this.numberInput2],
+            result: 3
+          });
+        });
     });
   });
 });

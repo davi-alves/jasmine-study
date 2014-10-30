@@ -1,10 +1,10 @@
 /*global define*/
-define(function () {
+define(['events'], function (events) {
   'use strict';
 
   var self = {};
 
-  self.sum = function () {
+  self.add = function () {
     var operands = Array.prototype.slice.call(arguments),
       total = 0;
 
@@ -14,6 +14,11 @@ define(function () {
       }
 
       total += value;
+    });
+
+    events.publish('added', {
+      operands: operands,
+      result: total
     });
 
     return total;
